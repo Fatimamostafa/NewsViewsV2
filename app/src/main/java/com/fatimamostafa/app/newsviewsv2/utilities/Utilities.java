@@ -1,0 +1,143 @@
+package com.fatimamostafa.app.newsviewsv2.utilities;
+
+import android.app.Activity;
+import android.content.Context;
+
+import android.content.res.Resources;
+
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+
+
+import com.fatimamostafa.app.newsviewsv2.R;
+
+
+public class Utilities {
+
+    /**
+     * Show a forward activity transition
+     *
+     * @param activity
+     */
+    public static void showForwardTransition(Activity activity) {
+        try {
+            activity.overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+        } catch (Exception e) {
+            Log.e("ActivityForwardTransit", e.getMessage());
+        }
+    }
+
+    /**
+     * Show a forward activity transition
+     *
+     * @param activity
+     */
+    public static void showForwardTransitionFadeIn(Activity activity) {
+        try {
+            activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        } catch (Exception e) {
+            Log.e("ActivityForwardTransit", e.getMessage());
+        }
+    }
+
+    /**
+     * Show a backward activity transition
+     *
+     * @param activity
+     */
+    public static void showBackwardTransition(Activity activity) {
+        try {
+            activity.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+        } catch (Exception e) {
+            Log.e("ActivityBackwardTransit", e.getMessage());
+        }
+    }
+
+    /**
+     * Returns the device width in px
+     *
+     * @return Device width
+     */
+    public static int getDeviceWidthInPX(Context context) {
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+
+    /**
+     * Returns the device height in px
+     *
+     * @return Device height
+     */
+    public static int getDeviceHeightInPX(Context context) {
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    /**
+     * Returns the device width in dp
+     *
+     * @return Device width
+     */
+    public static float getDeviceWidthInDP(Context context) {
+        int width = getDeviceWidthInPX(context);
+        return px2dip(width, context);
+    }
+
+    /**
+     * Returns he device height in dp
+     *
+     * @return Device height
+     */
+    public static float getDeviceHeightInDP(Context context) {
+        int height = getDeviceHeightInPX(context);
+        return px2dip(height, context);
+    }
+
+    /**
+     * Converts DP to PX
+     *
+     * @param dp
+     * @return pixel
+     */
+
+    public static float dip2px(float dp, Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        return px;
+    }
+
+    /**
+     * Converts PX to DP
+     *
+     * @param px
+     * @param context
+     * @return dp
+     */
+
+    public static float px2dip(float px, Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        return dp;
+    }
+
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity
+                .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (activity.getCurrentFocus() != null)
+            inputMethodManager.hideSoftInputFromWindow(activity
+                    .getCurrentFocus().getWindowToken(), 0);
+    }
+
+
+}
