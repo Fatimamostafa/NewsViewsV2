@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 ext {
@@ -50,5 +54,9 @@ dependencies {
 
     //RoundedImage
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Calligraphy
+    implementation 'io.github.inflationx:calligraphy3:3.0.0'
+    implementation 'io.github.inflationx:viewpump:1.0.0'
 
 }
