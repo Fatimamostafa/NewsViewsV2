@@ -2,14 +2,15 @@ package com.fatimamostafa.app.newsviewsv2.utilities;
 
 import android.app.Activity;
 import android.content.Context;
-
 import android.content.res.Resources;
-
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-
+import android.widget.Button;
 
 import com.fatimamostafa.app.newsviewsv2.R;
 
@@ -140,4 +141,62 @@ public class Utilities {
     }
 
 
+    // Button Topdown animation
+
+    public static void hideAnimation(Context context, Button button) {
+
+        Animation hide = AnimationUtils.loadAnimation(context, R.anim.slide_down_anim);
+
+        button.startAnimation(hide);
+
+        hide.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                button.clearAnimation();
+                button.setVisibility(View.GONE);
+
+            }
+
+        });
+
+    }
+
+
+    // Button bottomUp animation
+    public static void showAnimation(Context context, Button button) {
+        Animation show = AnimationUtils.loadAnimation(context, R.anim.slide_up_anim);
+
+        button.startAnimation(show);
+
+        show.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+                button.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                button.clearAnimation();
+
+            }
+
+        });
+    }
 }

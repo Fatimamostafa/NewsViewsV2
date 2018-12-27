@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">NewsViewsV2</string>
+    <string name="get_started">Get Started</string>
+    <string name="header1">Fatima Mostafa</string>
+    <string name="header2"></string>
+    <string name="header3">Stuffs that keeps me going!</string>
+    <string name="desc1">A tech enthusiast. Feels proud of creating stuffs. Apparently pursuing career as a Mobile Application Developer. Believes in her infinite potential. </string>
+    <string name="desc2"></string>
+    <string name="desc3">• Practicing martial arts! \n• Thoughts of starting healthy diet while having stuffed pizza! \n• The calmness of people getting used to dhaka traffic! </string>
 </resources>
