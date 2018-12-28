@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fatimamostafa.app.newsviewsv2">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".utilities.NewsViewsApplication"
         android:allowBackup="true"
@@ -10,21 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity"
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".ui.splash.SplashActivity"
-            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.introduction.IntroductionActivity"
-            android:screenOrientation="portrait" >
-
+        <activity
+            android:name=".ui.introduction.IntroductionActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>

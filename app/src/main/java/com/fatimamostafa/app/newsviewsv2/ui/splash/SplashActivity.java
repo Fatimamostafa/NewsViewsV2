@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fatimamostafa.app.newsviewsv2.R;
-import com.fatimamostafa.app.newsviewsv2.ui.MainActivity;
+import com.fatimamostafa.app.newsviewsv2.ui.login.LoginActivity;
+import com.fatimamostafa.app.newsviewsv2.ui.main.MainActivity;
 import com.fatimamostafa.app.newsviewsv2.ui.introduction.IntroductionActivity;
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.SharedPreferenceManager;
@@ -14,9 +15,6 @@ import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 
 import java.util.concurrent.TimeUnit;
 
-import io.github.inflationx.calligraphy3.CalligraphyConfig;
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
-import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void onComplete(Long aLong) {
         Intent intent;
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         Utilities.showForwardTransitionFadeIn(this);
         finish();

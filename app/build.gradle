@@ -24,6 +24,7 @@ android {
 
 ext {
     supportLibraryVersion = '27.1.1'
+    googleAPIVersion = '11.6.0'
 }
 
 dependencies {
@@ -59,4 +60,14 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
 
+    //Firebase
+    implementation "com.google.firebase:firebase-auth:$googleAPIVersion"
+    implementation "com.google.android.gms:play-services-auth:$googleAPIVersion"
+
+
+    //AviLoader
+    implementation 'com.wang.avi:library:2.1.3'
+
 }
+
+apply plugin: 'com.google.gms.google-services'

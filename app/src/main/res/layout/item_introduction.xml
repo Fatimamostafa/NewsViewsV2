@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/ob_desc_padding"
                 android:paddingRight="@dimen/ob_desc_padding"
-                android:text="Farwa"
+                tools:text="Farwa"
                 fontPath="fonts/serif.ttf"
                 android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
@@ -52,7 +52,7 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/ob_desc_padding"
                 android:paddingRight="@dimen/ob_desc_padding"
-                android:text="Is a good girl"
+                tools:text="Is a good girl"
                 fontPath="fonts/regular_two.otf"
                 android:textColor="@color/colorNotBlack"
                 android:textSize="@dimen/ob_desc_text_size" />

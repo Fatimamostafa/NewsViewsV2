@@ -7,17 +7,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.bumptech.glide.util.Util;
 import com.fatimamostafa.app.newsviewsv2.R;
-import com.fatimamostafa.app.newsviewsv2.ui.MainActivity;
+import com.fatimamostafa.app.newsviewsv2.ui.login.LoginActivity;
+import com.fatimamostafa.app.newsviewsv2.ui.main.MainActivity;
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.SharedPreferenceManager;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
@@ -53,6 +49,8 @@ public class IntroductionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction);
         ButterKnife.bind(this);
+
+        SharedPreferenceManager.getInstance().setBoolean(Constants.APP_LAUNCHED_SECOND_TIME, true);
 
         loadData();
 
@@ -98,9 +96,6 @@ public class IntroductionActivity extends AppCompatActivity {
     }
 
 
-
-
-
     // setup the
     private void setUiPageViewController() {
 
@@ -124,7 +119,6 @@ public class IntroductionActivity extends AppCompatActivity {
         dots[0].setImageDrawable(ContextCompat.getDrawable(IntroductionActivity.this, R.drawable.selected_item_dot));
     }
 
-
     private void loadData() {
         int[] header = {R.string.header1, R.string.header2, R.string.header3};
         int[] desc = {R.string.desc1, R.string.desc2, R.string.desc3};
@@ -143,8 +137,7 @@ public class IntroductionActivity extends AppCompatActivity {
     @OnClick(R.id.btn_get_started)
     public void onViewClicked() {
         Log.d(TAG, "onViewClicked: ");
-     SharedPreferenceManager.getInstance().setBoolean(Constants.APP_LAUNCHED_SECOND_TIME, true);
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         Utilities.showForwardTransitionFadeIn(this);
         finish();

@@ -3,6 +3,7 @@ package com.fatimamostafa.app.newsviewsv2.utilities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.fatimamostafa.app.newsviewsv2.R;
 
@@ -198,5 +200,52 @@ public class Utilities {
             }
 
         });
+    }
+
+    /**
+     * Show Long Toast
+     *
+     * @param context
+     * @param msg
+     */
+    public static void showLongToast(Context context, String msg) {
+        String message = msg;
+
+        if (TextUtils.isEmpty(message))
+            message = "";
+
+        if (context != null) {
+            try {
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Log.e("LongToast", e.getMessage() + "");
+            }
+        } else {
+            Log.e("LongToast", "Context Can not be null");
+        }
+    }
+
+    /**
+     * SHow Short Toast
+     *
+     * @param context
+     * @param msg
+     */
+    public static void showShortToast(Context context, String msg) {
+        String message = msg;
+
+        if (TextUtils.isEmpty(message))
+            message = "";
+
+        if (context != null) {
+            try {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+            } catch (Exception e) {
+                Log.e("ShortToast", e.getMessage() + "");
+            }
+        } else {
+            Log.e("ShortToast", "Context Can not be null");
+        }
     }
 }
