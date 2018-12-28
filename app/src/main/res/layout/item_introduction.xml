@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
 
     <ImageView
@@ -13,12 +13,10 @@
         android:layout_height="@dimen/ob_banner_height"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:scaleType="centerCrop"
-         />
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,34 +26,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_header"
+                fontPath="fonts/serif.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="@dimen/ob_desc_padding"
                 android:paddingRight="@dimen/ob_desc_padding"
-                tools:text="Farwa"
-                fontPath="fonts/serif.ttf"
                 android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/ob_header_text_size" />
+                android:textSize="@dimen/ob_header_text_size"
+                tools:text="Farwa" />
 
             <TextView
                 android:id="@+id/tv_desc"
+                fontPath="fonts/regular_two.otf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dime_14dp"
                 android:gravity="center"
                 android:paddingLeft="@dimen/ob_desc_padding"
                 android:paddingRight="@dimen/ob_desc_padding"
-                tools:text="Is a good girl"
-                fontPath="fonts/regular_two.otf"
                 android:textColor="@color/colorNotBlack"
-                android:textSize="@dimen/ob_desc_text_size" />
+                android:textSize="@dimen/ob_desc_text_size"
+                tools:text="Is a good girl" />
 
         </LinearLayout>
 

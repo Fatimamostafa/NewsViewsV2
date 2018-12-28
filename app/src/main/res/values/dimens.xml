@@ -10,8 +10,8 @@
     <dimen name="ob_header_top_margin">50dp</dimen>
     <dimen name="ob_desc_padding">30dp</dimen>
     <dimen name="ob_banner_height">300dp</dimen>
-    <dimen name="ob_header_text_size">24sp</dimen>
-    <dimen name="ob_desc_text_size">18sp</dimen>
+    <dimen name="ob_header_text_size">22sp</dimen>
+    <dimen name="ob_desc_text_size">16sp</dimen>
     <dimen name="_16dp">16dp</dimen>
     <dimen name="_24dp">24dp</dimen>
     <dimen name="dime_14dp">14dp</dimen>
