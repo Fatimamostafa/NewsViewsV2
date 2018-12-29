@@ -7,4 +7,12 @@
     <string name="desc1">A tech enthusiast. Feels proud of creating stuffs. Apparently pursuing career as a Mobile Application Developer. Believes in her infinite potential. </string>
     <string name="desc2"></string>
     <string name="desc3">• Practicing martial arts! \n• Thoughts of starting healthy diet while having stuffed pizza! \n• The calmness of people getting used to dhaka traffic! </string>
+    <string name="about">About</string>
+    <string name="home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_hints">Number API: Search digits like 89,1000, 30432423 etc. \nDate API: Search month and date in the format \"mm/dd\" like for 31st December \"12/31\". </string>
 </resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchActivity"
+    tools:ignore="MissingPrefix">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/colorAccent"
+        android:padding="13dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_white"
+            android:focusableInTouchMode="true">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
+                style="@style/SearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:imeOptions="actionDone"
+                android:paddingLeft="60dp"
+                android:textStyle="normal"
+                app:iconifiedByDefault="false"
+                app:queryHint="Search digits or mm/dd" />
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_back" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_back"
+                android:src="@drawable/ic_search" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_logo"
+        android:layout_centerInParent="true"
+        android:background="@drawable/round_border"
+        android:visibility="gone"
+        app:indicatorColor="@color/colorAccent"
+        app:indicatorName="BallClipRotateMultipleIndicator" />
+
+    <TextView
+        android:id="@+id/tv_search_hint"
+        fontPath="fonts/bold.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="@dimen/dime_14dp"
+        android:paddingLeft="@dimen/ob_desc_padding"
+        android:paddingRight="@dimen/ob_desc_padding"
+        android:text="@string/search_hints"
+        android:textColor="@color/colorNotBlack"
+        android:textSize="14sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_search_result"
+        fontPath="fonts/bold.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="@dimen/dime_14dp"
+        android:paddingLeft="@dimen/ob_desc_padding"
+        android:paddingRight="@dimen/ob_desc_padding"
+        android:textColor="@color/colorNotBlack"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

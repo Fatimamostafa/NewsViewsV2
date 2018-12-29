@@ -1,5 +1,6 @@
 package com.fatimamostafa.app.newsviewsv2.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,6 +29,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Log.w(TAG, "Google sign in failed", e);
+                Utilities.showShortToast(LoginActivity.this, "Google sign in failed");
                 checkUser(null);
             }
         }
@@ -158,10 +161,14 @@ public class LoginActivity extends AppCompatActivity {
     private void navigateToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        Utilities.showForwardTransitionFadeIn(this);
+        Utilities.showForwardTransition(this);
         finish();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
     @OnClick({R.id.btnGoogle, R.id.tv_skip})
     public void onViewClicked(View view) {

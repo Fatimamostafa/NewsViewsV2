@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffc107</color>
-    <color name="colorPrimaryDark">#ffa000</color>
+    <color name="colorPrimaryDark">#ffc107</color>
     <color name="colorPrimaryLight">#ffceb3</color>
     <color name="colorAccent">#ffce00</color>
     <color name="colorBgGrey">#f4f4f4</color>
@@ -10,6 +10,7 @@
     <color name="colorNotBlack">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorTransparent">#00ffffff</color>
     <color name="colorTextGrey">#8a8e95</color>
 
     <color name="selected_dot">#ffce00</color>
