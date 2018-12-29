@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 import com.fatimamostafa.app.newsviewsv2.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 public class Utilities {
 
@@ -244,6 +249,23 @@ public class Utilities {
         } else {
             Log.e("ShortToast", "Context Can not be null");
         }
+    }
+
+    //Date converter
+    public static String dateConverter(String dateFromApi) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        inputFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM h:mm a");
+        Date date = null;
+        try {
+            date = inputFormat.parse(dateFromApi);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = outputFormat.format(date);
+        String str = formattedDate.replace("AM", "am").replace("PM", "pm");
+        return str; // 13 Oct 10:34 am
     }
 
 

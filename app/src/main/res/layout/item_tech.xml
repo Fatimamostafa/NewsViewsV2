@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     app:ignore="NamespaceTypo"
     android:layout_marginBottom="4dp"
+    android:layout_marginEnd="8dp"
     card_view:cardBackgroundColor="#ffffff"
     card_view:cardCornerRadius="0dp"
     card_view:cardElevation="2dp">
@@ -18,11 +19,10 @@
             android:id="@+id/iv_thumbnail"
             android:layout_width="143dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/samplebg"
-            android:scaleType="fitCenter"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
              />
 
         <RelativeLayout
@@ -64,7 +64,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:letterSpacing="0.05"
-                    android:text="12 Dec 2018"
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="7sp"
                     app:ignore="MissingPrefix" />
@@ -78,9 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_tag"
                 android:layout_marginTop="12dp"
-                android:text="Former NBC producer who
-work on Ronan Farrow&apos;s Harvey Weinstein reporting breaks
-silence"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
                 app:ignore="MissingPrefix" />
@@ -100,7 +96,6 @@ silence"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider"
                 android:layout_marginTop="11dp"
-                android:text="Author: "
                 android:textColor="@color/colorTextGrey"
                 android:textSize="10sp"
                 app:ignore="MissingPrefix" />

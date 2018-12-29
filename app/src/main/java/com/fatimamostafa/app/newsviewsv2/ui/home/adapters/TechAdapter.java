@@ -6,19 +6,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
 
 import java.util.List;
 
-public class TechAdapter extends RecyclerView.Adapter<TechAdapter.ViewHolder>{
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class TechAdapter extends RecyclerView.Adapter<TechAdapter.ViewHolder> {
     Context context;
-    List<ArticlesItem> articlesItemTech;
+    List<ArticlesItem> list;
+
 
     public TechAdapter(Context context, List<ArticlesItem> articlesItemTech) {
         this.context = context;
-        this.articlesItemTech = articlesItemTech;
+        this.list = articlesItemTech;
     }
 
     @NonNull
@@ -30,17 +37,29 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.tvAuthor.setText("Author: " + list.get(position).getAuthor());
+        holder.tvDate.setText(list.get(position).getPublishedAt());
+        holder.tvNewsTitle.setText(list.get(position).getTitle());
+        Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_thumbnail)
+        ImageView ivThumbnail;
+        @BindView(R.id.tv_date)
+        TextView tvDate;
+        @BindView(R.id.tv_news_title)
+        TextView tvNewsTitle;
+        @BindView(R.id.tv_author)
+        TextView tvAuthor;
         public ViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

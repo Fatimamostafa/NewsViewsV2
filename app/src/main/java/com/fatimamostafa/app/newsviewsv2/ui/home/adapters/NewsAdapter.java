@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
@@ -19,12 +20,12 @@ import butterknife.ButterKnife;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     Context context;
-    List<ArticlesItem> articlesItemUs;
+    List<ArticlesItem> list;
 
 
     public NewsAdapter(Context context, List<ArticlesItem> articlesItemUs) {
         this.context = context;
-        this.articlesItemUs = articlesItemUs;
+        this.list = articlesItemUs;
     }
 
     @NonNull
@@ -36,12 +37,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.tvAuthor.setText();
+        holder.tvAuthor.setText("Author: " + list.get(position).getAuthor());
+        holder.tvDate.setText(list.get(position).getPublishedAt());
+        holder.tvNewsTitle.setText(list.get(position).getTitle());
+        Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

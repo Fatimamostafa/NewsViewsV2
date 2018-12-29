@@ -60,7 +60,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter {
     }
 
     private void prepareTechViewHolder(ViewHolderTech holder, int position) {
-        holder.adapter = new TechAdapter(context, articlesItemUs);
+        holder.adapter = new TechAdapter(context, articlesItemTech);
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);
         holder.recyclerView.setLayoutManager(layoutManager);
         holder.recyclerView.setAdapter(holder.adapter);
