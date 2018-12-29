@@ -15,4 +15,5 @@
 
     <color name="selected_dot">#ffce00</color>
     <color name="idle_dot">#7e7034</color>
+    <color name="colorBackground">#f4f4f4</color>
 </resources>

@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        toolbar.getBackground().setAlpha(0);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -173,6 +172,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Intent intent;
         intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
-        Utilities.showForwardTransitionFadeIn(this);
+        Utilities.showForwardTransition(this);
     }
 }

@@ -111,11 +111,8 @@ public class Utilities {
      * @return pixel
      */
 
-    public static float dip2px(float dp, Context context) {
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
-        return px;
+    public static int dip2px(float dp, Context ctx) {
+        return (int) (dp * ctx.getResources().getDisplayMetrics().density + 0.5);
     }
 
     /**
@@ -248,4 +245,6 @@ public class Utilities {
             Log.e("ShortToast", "Context Can not be null");
         }
     }
+
+
 }

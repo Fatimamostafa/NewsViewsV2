@@ -6,9 +6,13 @@
     tools:context=".ui.home.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/rv"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/colorBackground"
+      android:overScrollMode="never">
+
+  </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
