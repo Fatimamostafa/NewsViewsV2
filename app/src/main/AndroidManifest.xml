@@ -33,8 +33,10 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.listview.ListViewActivity" />
-        <activity android:name=".ui.home.NewsDetailsActivity"></activity>
+        <activity android:name=".ui.listview.ListViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.home.NewsDetailsActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

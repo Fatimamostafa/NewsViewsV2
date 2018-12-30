@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, SwipeRe
                     new HomeContract.OnClickListener() {
                         @Override
                         public void onNewsArticleClicked(ArticlesItem item) {
-                            showDialog(item);
+                            showAlertDialog(item);
                         }
 
                         @Override
@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, SwipeRe
                 android.R.color.black);
     }
 
-    private void showDialog(ArticlesItem item) {
+    private void showAlertDialog(ArticlesItem item) {
         Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -227,6 +227,12 @@ public class HomeFragment extends Fragment implements HomeContract.View, SwipeRe
     public void navigateToMobileBrowser(ArticlesItem item) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getUrl()));
         startActivity(browserIntent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
     }
 
     @Override

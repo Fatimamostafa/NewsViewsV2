@@ -211,6 +211,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Utilities.showBackwardTransition(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

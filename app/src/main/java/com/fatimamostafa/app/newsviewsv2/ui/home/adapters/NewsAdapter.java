@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
 import com.fatimamostafa.app.newsviewsv2.ui.home.HomeContract;
+import com.fatimamostafa.app.newsviewsv2.utilities.GlideApp;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 
 
@@ -51,9 +53,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvAuthor.setText("Author: " + list.get(position).getAuthor());
         holder.tvDate.setText(Utilities.dateConverter(list.get(position).getPublishedAt()));
         holder.tvNewsTitle.setText(list.get(position).getTitle());
-        Glide.with(context)
-                .asBitmap()
+
+        GlideApp.with(context)
                 .load(list.get(position).getUrlToImage())
+                .skipMemoryCache(false)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .apply(requestOptions)
                 .into(holder.ivThumbnail);
 

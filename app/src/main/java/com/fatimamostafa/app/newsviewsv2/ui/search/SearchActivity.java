@@ -102,8 +102,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         presenter.detachView();
     }
 
