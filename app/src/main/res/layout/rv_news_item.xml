@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:layout_marginBottom="10dp"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    tools:ignore="MissingPrefix">
 
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="11dp"
         android:paddingStart="20dp"
-        android:paddingTop="11dp"
-        android:paddingBottom="11dp">
-    <TextView
-        android:id="@+id/tv_news_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        fontPath="fonts/regular.ttf"
-        android:textSize="12sp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/colorTextGrey"
-        android:text="US News"
-        />
+        >
+
         <TextView
-            android:id="@+id/tv_more"
+            android:id="@+id/tv_news_type"
+            fontPath="fonts/bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
             android:layout_centerVertical="true"
+            android:text="US News"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            fontPath="fonts/bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/colorBlack"
+            android:layout_centerVertical="true"
+         android:padding="10dp"
             android:text="MORE"
-            android:layout_marginEnd="10dp"
-            />
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -44,14 +44,15 @@
         android:layout_height="2dp"
         android:layout_below="@id/rl_top"
         android:layout_marginStart="20dp"
-        android:background="@color/colorDivider"/>
+        android:background="@color/colorDivider" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_us"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/divider"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/divider">
+        >
 
     </android.support.v7.widget.RecyclerView>
 

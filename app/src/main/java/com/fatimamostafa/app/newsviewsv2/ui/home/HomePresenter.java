@@ -1,10 +1,12 @@
 package com.fatimamostafa.app.newsviewsv2.ui.home;
 
+import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
 import com.fatimamostafa.app.newsviewsv2.models.News;
 import com.fatimamostafa.app.newsviewsv2.network.Repository;
 import com.fatimamostafa.app.newsviewsv2.ui.BasePresenterImpl;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -30,6 +32,11 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(view::onTechNewsLoaded, this::onError));
+    }
+
+    @Override
+    public void onMoreClicked(List<ArticlesItem> articlesItemList, String newsType) {
+        view.navigateToListView(articlesItemList, newsType);
     }
 
 

@@ -12,6 +12,9 @@ import com.fatimamostafa.app.newsviewsv2.ui.introduction.IntroductionActivity;
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.SharedPreferenceManager;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 
 import java.util.concurrent.TimeUnit;
 

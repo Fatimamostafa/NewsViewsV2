@@ -46,6 +46,7 @@ public class RetrofitNewsApiClient {
         Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
         OkHttpClient.Builder httpClient = Utilities.getUnsafeOkHttpClient();
+
         httpClient.cache(cache); // 10 MB
         httpClient.addNetworkInterceptor(new ResponseCacheInterceptor(context));
         httpClient.addInterceptor(new OfflineResponseCacheInterceptor(context));

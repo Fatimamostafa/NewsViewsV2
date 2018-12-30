@@ -15,4 +15,9 @@ public class Constants {
         public static final String HOME = "com.fatimamostafa.app.newsviewsv2.ui.home.HomeFragment";
         public static final String ABOUT = "com.fatimamostafa.app.newsviewsv2.ui.about.AboutFragment";
     }
+
+    public class Intents {
+        public static final String ARTICLE_LIST = "ARTICLE_LIST";
+        public static final String NEWS_TYPE = "NEWS_TYPE";
+    }
 }

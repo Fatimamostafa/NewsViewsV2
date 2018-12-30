@@ -1,6 +1,7 @@
 package com.fatimamostafa.app.newsviewsv2.ui.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +15,11 @@ import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
 import com.fatimamostafa.app.newsviewsv2.models.News;
 import com.fatimamostafa.app.newsviewsv2.ui.home.adapters.HomeMainAdapter;
-import com.fatimamostafa.app.newsviewsv2.utilities.SharedPreferenceManager;
+import com.fatimamostafa.app.newsviewsv2.ui.listview.ListViewActivity;
+import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -35,6 +38,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class HomeFragment extends Fragment implements HomeContract.View {
 
+    public static final String TAG = "HomeFragment";
     Unbinder unbinder;
     HomeMainAdapter adapter;
     List<ArticlesItem> articlesItemUs = new ArrayList<>();
@@ -42,8 +46,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     HomePresenter presenter;
     Disposable disposable;
     boolean dataLoaded;
-    public static final String TAG = "HomeFragment";
-
     @BindView(R.id.loading_indicator)
     AVLoadingIndicatorView loadingIndicator;
     @BindView(R.id.rv)
@@ -78,7 +80,18 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     private void initView() {
         Log.d(TAG, "initView: ");
-        adapter = new HomeMainAdapter(getActivity(), articlesItemUs, articlesItemTech);
+        adapter = new HomeMainAdapter(getActivity(), articlesItemUs, articlesItemTech,
+                new HomeContract.OnClickListener() {
+                    @Override
+                    public void onNewsArticleClicked(ArticlesItem item) {
+                        // showDialog(item);
+                    }
+
+                    @Override
+                    public void onMoreClicked(List<ArticlesItem> articlesItemList, String newsType) {
+                        presenter.onMoreClicked(articlesItemList, newsType);
+                    }
+                });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -119,9 +132,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
                                     @Override
                                     public void accept(Boolean isConnectedToInternet) {
                                         // do something with isConnectedToInternet value
-                                            if (isConnectedToInternet && !dataLoaded) {
-                                                initPresenter();
-                                            }
+                                        if (isConnectedToInternet && !dataLoaded) {
+                                            initPresenter();
+                                        }
                                     }
                                 });
     }
@@ -130,6 +143,15 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void onUsNewsLoaded(News news) {
         articlesItemUs.clear();
         articlesItemUs.addAll(news.getArticles());
-       // adapter.notifyDataSetChanged();
+        // adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void navigateToListView(List<ArticlesItem> articlesItemList, String newsType) {
+        Intent intent = new Intent(getActivity(), ListViewActivity.class);
+        intent.putExtra(Constants.Intents.ARTICLE_LIST, new Gson().toJson(articlesItemList));
+        intent.putExtra(Constants.Intents.NEWS_TYPE, newsType);
+        startActivity(intent);
+        Utilities.showForwardTransition(getActivity());
     }
 }
