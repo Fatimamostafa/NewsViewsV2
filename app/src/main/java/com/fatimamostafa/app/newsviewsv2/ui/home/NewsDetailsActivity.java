@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
@@ -11,8 +12,7 @@ import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +25,8 @@ public class NewsDetailsActivity extends AppCompatActivity {
     WebView webView;
 
     ArticlesItem item;
+    @BindView(R.id.loading_indicator)
+    AVLoadingIndicatorView loadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,16 @@ public class NewsDetailsActivity extends AppCompatActivity {
             }.getType());
         }
 
+        loadingIndicator.show();
         webView.loadUrl(item.getUrl());
+
+        webView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                // do your stuff here
+                loadingIndicator.hide();
+            }
+        });
     }
 
     @Override
