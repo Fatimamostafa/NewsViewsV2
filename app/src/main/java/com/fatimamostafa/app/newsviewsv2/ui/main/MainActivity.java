@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,9 +21,15 @@ import android.widget.TextView;
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.ui.login.LoginActivity;
 import com.fatimamostafa.app.newsviewsv2.ui.search.SearchActivity;
-import com.fatimamostafa.app.newsviewsv2.ui.search.SearchContract;
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
 import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -39,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     NavigationAdapter adapter;
     String CURRENT_FRAGMENT = "";
     MainContract.Presenter presenter;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.rv_nav)
@@ -50,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     DrawerLayout drawerLayout;
     @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        mAuth = FirebaseAuth.getInstance();
 
         init();
     }
@@ -151,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
 
-    @OnClick({R.id.ivSearch, R.id.rl_exit})
+    @OnClick({R.id.ivSearch, R.id.rl_exit, R.id.rl_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivSearch:
@@ -160,8 +169,48 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case R.id.rl_exit:
                 super.onBackPressed();
                 break;
+            case R.id.rl_logout:
+                signOut();
+                break;
         }
     }
+
+
+    private void signOut() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // Firebase sign out
+            mAuth.signOut();
+            // Google sign out
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                    new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            navigateToLogin();
+                        }
+                    });
+        } else {
+            navigateToLogin();
+        }
+
+
+    }
+
+    private void navigateToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+        Utilities.showBackwardTransition(this);
+    }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -174,4 +223,5 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         startActivity(intent);
         Utilities.showForwardTransition(this);
     }
+
 }

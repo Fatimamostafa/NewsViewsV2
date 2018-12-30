@@ -39,6 +39,16 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
         view.navigateToListView(articlesItemList, newsType);
     }
 
+    @Override
+    public void onNoClicked(ArticlesItem item) {
+        view.navigateToWebView(item);
+    }
+
+    @Override
+    public void onYesClicked(ArticlesItem item) {
+        view.navigateToMobileBrowser(item);
+    }
+
 
     private void onError(Throwable throwable) {
         if (throwable instanceof IOException) {

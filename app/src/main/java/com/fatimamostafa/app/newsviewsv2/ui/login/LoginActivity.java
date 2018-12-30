@@ -133,19 +133,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
 
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        checkUser(null);
-                    }
-                });
-    }
 
 
     private void checkUser(FirebaseUser user) {

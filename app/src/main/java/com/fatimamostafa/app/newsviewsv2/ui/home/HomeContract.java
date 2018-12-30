@@ -15,6 +15,10 @@ public class HomeContract {
         void onUsNewsLoaded(News news);
 
         void navigateToListView(List<ArticlesItem> articlesItemList, String newsType);
+
+        void navigateToWebView(ArticlesItem item);
+
+        void navigateToMobileBrowser(ArticlesItem item);
     }
     interface Presenter {
 
@@ -23,6 +27,10 @@ public class HomeContract {
         void getTechNews();
 
         void onMoreClicked(List<ArticlesItem> articlesItemList, String newsType);
+
+        void onNoClicked(ArticlesItem item);
+
+        void onYesClicked(ArticlesItem item);
     }
     public interface OnClickListener {
         void onNewsArticleClicked(ArticlesItem item);

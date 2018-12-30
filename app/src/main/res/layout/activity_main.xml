@@ -55,28 +55,51 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_16dp"
                     android:overScrollMode="never"
-                    android:layout_above="@id/rl_exit"
                     android:layout_alignParentTop="true">
 
                 </android.support.v7.widget.RecyclerView>
 
-                <RelativeLayout
-                    android:id="@+id/rl_exit"
-                    android:layout_width="188dp"
-                    android:layout_height="38dp"
+                <LinearLayout
+                    android:id="@+id/ll_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
+                <RelativeLayout
+                    android:id="@+id/rl_logout"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
                     android:background="@drawable/btn_black"
-                    android:layout_margin="24dp">
+                    android:layout_margin="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="EXIT"
+                        android:text="LOGOUT"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp" />
                 </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rl_exit"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/btn_black"
+                       >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="EXIT"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
 

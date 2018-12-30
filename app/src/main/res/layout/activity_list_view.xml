@@ -28,8 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/iv_back"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:text="News"
             android:textColor="@color/colorBlack"
             android:textSize="20sp" />

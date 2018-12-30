@@ -19,5 +19,6 @@ public class Constants {
     public class Intents {
         public static final String ARTICLE_LIST = "ARTICLE_LIST";
         public static final String NEWS_TYPE = "NEWS_TYPE";
+        public static final String ARTICLE = "ARTICLE";
     }
 }
