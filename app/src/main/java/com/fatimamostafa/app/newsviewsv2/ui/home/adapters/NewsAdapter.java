@@ -1,17 +1,24 @@
 package com.fatimamostafa.app.newsviewsv2.ui.home.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
+import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
+
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -38,9 +45,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvAuthor.setText("Author: " + list.get(position).getAuthor());
-        holder.tvDate.setText(list.get(position).getPublishedAt());
+        holder.tvDate.setText(Utilities.dateConverter(list.get(position).getPublishedAt()));
         holder.tvNewsTitle.setText(list.get(position).getTitle());
-        Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
+       Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
     }
 
     @Override
@@ -50,7 +57,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_thumbnail)
-        PorterShapeImageView ivThumbnail;
+        RoundedImageView ivThumbnail;
         @BindView(R.id.tv_date)
         TextView tvDate;
         @BindView(R.id.tv_news_title)

@@ -16,10 +16,21 @@ import android.widget.Toast;
 
 import com.fatimamostafa.app.newsviewsv2.R;
 
+import java.security.cert.CertificateException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
 
 
 public class Utilities {
@@ -253,20 +264,57 @@ public class Utilities {
 
     //Date converter
     public static String dateConverter(String dateFromApi) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        inputFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM h:mm a");
-        Date date = null;
+        DateFormat targetFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date sd = null;
         try {
-            date = inputFormat.parse(dateFromApi);
+            sd = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(dateFromApi);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String formattedDate = outputFormat.format(date);
-        String str = formattedDate.replace("AM", "am").replace("PM", "pm");
-        return str; // 13 Oct 10:34 am
+        String formattedDate = targetFormat.format(sd);
+        return formattedDate;
     }
 
+
+    public static OkHttpClient.Builder getUnsafeOkHttpClient() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            return builder;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

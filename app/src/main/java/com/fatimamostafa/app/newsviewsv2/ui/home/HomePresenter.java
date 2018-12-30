@@ -1,5 +1,6 @@
 package com.fatimamostafa.app.newsviewsv2.ui.home;
 
+import com.fatimamostafa.app.newsviewsv2.models.News;
 import com.fatimamostafa.app.newsviewsv2.network.Repository;
 import com.fatimamostafa.app.newsviewsv2.ui.BasePresenterImpl;
 
@@ -15,7 +16,12 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
         disposable.add(Repository.getTopUsNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(view::onUsNewsLoaded, this::onError));
+                .subscribe(this::onUsNewsLoaded, this::onError));
+    }
+
+    private void onUsNewsLoaded(News news) {
+        getTechNews();
+        view.onUsNewsLoaded(news);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.fatimamostafa.app.newsviewsv2.network;
 import android.content.Context;
 
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
+import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +35,7 @@ public class RetrofitSearchApiClient {
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
         Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        OkHttpClient.Builder httpClient = Utilities.getUnsafeOkHttpClient();
         httpClient.cache(cache); // 10 MB
         httpClient.addNetworkInterceptor(new ResponseCacheInterceptor(context));
         httpClient.addInterceptor(new OfflineResponseCacheInterceptor(context));

@@ -3,11 +3,20 @@ package com.fatimamostafa.app.newsviewsv2.network;
 import android.content.Context;
 
 import com.fatimamostafa.app.newsviewsv2.utilities.Constants;
+import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 import com.google.gson.GsonBuilder;
 
 
 import java.io.File;
+import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -36,7 +45,7 @@ public class RetrofitNewsApiClient {
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
         Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        OkHttpClient.Builder httpClient = Utilities.getUnsafeOkHttpClient();
         httpClient.cache(cache); // 10 MB
         httpClient.addNetworkInterceptor(new ResponseCacheInterceptor(context));
         httpClient.addInterceptor(new OfflineResponseCacheInterceptor(context));
@@ -61,5 +70,7 @@ public class RetrofitNewsApiClient {
                     .build();
         }
     }
+
+
 
 }

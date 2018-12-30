@@ -1,7 +1,10 @@
 package com.fatimamostafa.app.newsviewsv2.ui.home.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.fatimamostafa.app.newsviewsv2.R;
 import com.fatimamostafa.app.newsviewsv2.models.ArticlesItem;
+import com.fatimamostafa.app.newsviewsv2.utilities.Utilities;
 
 import java.util.List;
 
@@ -38,9 +46,25 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvAuthor.setText("Author: " + list.get(position).getAuthor());
-        holder.tvDate.setText(list.get(position).getPublishedAt());
+        holder.tvDate.setText(Utilities.dateConverter(list.get(position).getPublishedAt()));
         holder.tvNewsTitle.setText(list.get(position).getTitle());
-        Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
+        Glide.with(context)
+                .asBitmap()
+                .load(list.get(position).getUrlToImage())
+                .listener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        holder.ivThumbnail.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder));
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.ivThumbnail.setImageBitmap(resource);
+                        return true;
+                    }
+                }).submit();
+        //Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.ivThumbnail);
     }
 
     @Override

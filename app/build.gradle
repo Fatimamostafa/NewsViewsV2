@@ -83,6 +83,9 @@ dependencies {
     //FlexboxLayout
     implementation 'com.google.android:flexbox:0.3.2'
 
+    //ReactiveNetwork
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
