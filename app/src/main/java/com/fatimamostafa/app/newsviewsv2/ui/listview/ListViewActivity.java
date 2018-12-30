@@ -135,8 +135,10 @@ public class ListViewActivity extends AppCompatActivity implements ListViewContr
 
     @Override
     protected void onDestroy() {
+        if (presenter != null) {
+            presenter.detachView();
+        }
         super.onDestroy();
-        presenter.detachView();
     }
 
     @OnClick(R.id.iv_back)

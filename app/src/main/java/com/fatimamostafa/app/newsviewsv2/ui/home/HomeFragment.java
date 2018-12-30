@@ -157,9 +157,11 @@ public class HomeFragment extends Fragment implements HomeContract.View, SwipeRe
 
     @Override
     public void onDestroyView() {
+        if (presenter != null) {
+            presenter.detachView();
+        }
         super.onDestroyView();
         unbinder.unbind();
-        presenter.detachView();
     }
 
     @Override
@@ -231,8 +233,10 @@ public class HomeFragment extends Fragment implements HomeContract.View, SwipeRe
 
     @Override
     public void onDestroy() {
+        if (presenter != null) {
+            presenter.detachView();
+        }
         super.onDestroy();
-        presenter.detachView();
     }
 
     @Override

@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         CURRENT_FRAGMENT = item.getFragment();
 
+        if(item.getFragment().equals(Constants.Fragments.HOME))
+            tvToolbarTitle.setText("HOME");
+        else{
+            tvToolbarTitle.setText("ABOUT");
+        }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = new Fragment();
@@ -213,8 +218,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     protected void onDestroy() {
+        if (presenter != null) {
+            presenter.detachView();
+        }
         super.onDestroy();
-        presenter.detachView();
     }
 
     @Override

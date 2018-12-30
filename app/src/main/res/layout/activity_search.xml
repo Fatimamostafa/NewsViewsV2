@@ -53,17 +53,7 @@
 
 
     </RelativeLayout>
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/loading_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_search_hint"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/round_border"
-        android:layout_marginTop="@dimen/_24dp"
-        android:visibility="gone"
-        app:indicatorColor="@color/colorAccent"
-        app:indicatorName="BallClipRotateMultipleIndicator" />
+
 
     <TextView
         android:id="@+id/tv_search_hint"
@@ -91,5 +81,17 @@
         android:textColor="@color/colorNotBlack"
         android:textSize="14sp"
         android:visibility="gone" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_search_hint"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_border"
+        android:layout_marginTop="@dimen/_24dp"
+        android:visibility="gone"
+        app:indicatorColor="@color/colorAccent"
+        app:indicatorName="BallClipRotateMultipleIndicator" />
 
 </RelativeLayout>

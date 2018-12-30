@@ -16,4 +16,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_hints">Number API: Search digits like 89,1000, 30432423 etc. \nDate API: Search month and date in the format \"mm/dd\" like for 31st December \"12/31\". </string>
     <string name="alert_msg">Load the content on a mobile browser from the device?</string>
+    <string name="about_title">Rokomari Twenty-20 Android Hunt Project</string>
+    <string name="about_desc">This app uses two free APIs. Currently the home showing Top US News and Top Techchrunch News fetched from \"newsapi.org\" \nSearch page uses \"numbersapi.com\" for date and number search. \nThis application is a sample recruitment project task.  </string>
 </resources>
